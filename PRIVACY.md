@@ -1,6 +1,6 @@
 # pokebot Privacy Policy
 
-Effective date: 07/11/2026
+Effective date: 08/11/2026
 
 ## 1. Who we are
 
@@ -8,13 +8,14 @@ pokebot (the "Bot") is a text-based Discord bot operated by mark ("we", "us"), b
 
 ## 2. Unofficial fan project
 
-The Bot is an unofficial fan project. It is not affiliated with, endorsed by, or sponsored by Nintendo, Creatures Inc., GAME FREAK inc., The Pokémon Company, or Discord Inc. Pokémon and all related names are trademarks of their respective owners. The Bot is free, non-commercial, and uses text only.
+The Bot is an unofficial fan project. It is not affiliated with, endorsed by, or sponsored by Nintendo, Creatures Inc., GAME FREAK inc., The Pokémon Company, or Discord Inc. Pokémon and all related names are trademarks of their respective owners. The Bot is free and non-commercial. In Discord it is text only. The optional Clan Dex RuneLite plugin shows the Bot's Pokémon with sprites loaded from the community PokeAPI sprites project. Pokémon names, sprites and artwork are © Nintendo, Creatures Inc. and GAME FREAK inc. They are used here only to refer to and illustrate the game in a non-commercial fan project, and will be removed if the rights holders ask.
 
 ## 3. What we collect and store
 
 We store only what is needed to run the Bot:
 
 - **Your Discord user ID**, so we can keep your Pokédex separate from other players.
+- **Your Old School RuneScape display name**, if you play through in-game clan chat. Clan chat is relayed into Discord by another bot, and we use your in-game name in place of a Discord ID to keep your Pokédex.
 - **Your Pokédex**: which of the original 151 Pokémon you have caught, and how many of each.
 
 While a wild Pokémon is waiting to be caught, the Bot briefly remembers the channel ID it appeared in. This is held in memory only and is lost when the Bot restarts.
@@ -39,7 +40,8 @@ We do not sell or rent your data. We may share information only:
 
 - with Discord Inc. when reporting abuse or violations of its rules;
 - with the police, courts, or other authorities where the law requires it or where we are dealing with conduct that may be unlawful, such as an attack on the Bot; and
-- with our hosting provider, which stores the data on our behalf.
+- with our hosting provider, which stores the data on our behalf; and
+- for players who use in-game clan chat, in a file on GitHub that the Clan Dex RuneLite plugin reads: which Pokémon they caught and how many, listed under a scrambled code (a keyed hash) instead of their name. The code can only be matched to a name with a clan key that we share with clan members. Names and Discord user IDs are never published. To be left out, ask us to delete your data.
 
 Discord has its own [Privacy Policy](https://discord.com/privacy) that covers how Discord handles your information.
 

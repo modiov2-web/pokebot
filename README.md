@@ -23,6 +23,24 @@ The `--` text commands need **Message Content Intent** switched on in the Develo
 
 Never commit `.env` or `pokedex.json`. They are listed in `.gitignore`.
 
+### Optional: Clan Dex RuneLite plugin
+
+The Clan Dex plugin shows OSRS players their Pokédex in a RuneLite side panel. To feed it, the bot uploads the **in-game players'** catches to a GitHub gist about 15 seconds after each catch, and once at startup.
+
+Names are not published. Each player is listed under a hash of their name made with a clan key (`DEX_SECRET`), so without the key the file is just numbers. Discord-only players are never included.
+
+1. Create a gist at [gist.github.com](https://gist.github.com) with one file named `dex.json` containing `{}`. Make it a **secret** gist.
+2. Create a fine-grained token at GitHub → Settings → Developer settings → Personal access tokens, with only **Account permissions → Gists: Read and write**.
+3. Pick a clan key: a long random phrase, e.g. from `node -e "console.log(require('crypto').randomBytes(18).toString('base64url'))"`. Share it only with clan members (for example in a members-only Discord channel). They paste it into the plugin's **Clan key** setting.
+4. Add all three to `.env`: `GITHUB_TOKEN`, `GIST_ID` (the last part of the gist's URL) and `DEX_SECRET`.
+5. Restart the bot. It logs `Clan Dex: published the dex to GitHub`.
+
+Step-by-step instructions, including where everything is in GitHub's settings, are in [CLAN-DEX-SETUP.md](CLAN-DEX-SETUP.md).
+
+The plugin reads `https://gist.githubusercontent.com/<user>/<GIST_ID>/raw/dex.json`. GitHub caches that link for a few minutes, so new catches can take up to about 5 minutes to appear. Leave the keys blank to turn publishing off.
+
+Changing `DEX_SECRET` locks out everyone until they enter the new key. Older revisions of the gist stay readable on GitHub, but they only hold hashes made with the old key.
+
 ---
 
 # Terms of Service
@@ -35,7 +53,7 @@ pokebot (the "Bot") is a text-based Discord bot operated by mark ("we", "us"), b
 
 ## 2. Unofficial fan project
 
-The Bot is an unofficial fan project. It is not affiliated with, endorsed by, or sponsored by Nintendo, Creatures Inc., GAME FREAK inc., The Pokémon Company, or Discord Inc. Pokémon and all related names are trademarks of their respective owners. The Bot is free, non-commercial, and uses text only.
+The Bot is an unofficial fan project. It is not affiliated with, endorsed by, or sponsored by Nintendo, Creatures Inc., GAME FREAK inc., The Pokémon Company, or Discord Inc. Pokémon and all related names are trademarks of their respective owners. The Bot is free and non-commercial. In Discord it is text only. The optional Clan Dex RuneLite plugin shows the Bot's Pokémon with sprites loaded from the community PokeAPI sprites project. Pokémon names, sprites and artwork are © Nintendo, Creatures Inc. and GAME FREAK inc. They are used here only to refer to and illustrate the game in a non-commercial fan project, and will be removed if the rights holders ask.
 
 ## 3. Using the Bot
 
