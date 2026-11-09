@@ -16,7 +16,7 @@ We store only what is needed to run the Bot:
 
 - **Your Discord user ID**, so we can keep your Pokédex separate from other players.
 - **Your Old School RuneScape display name**, if you play through in-game clan chat. Clan chat is relayed into Discord by another bot, and we use your in-game name in place of a Discord ID to keep your Pokédex.
-- **Your Pokédex**: which of the original 151 Pokémon you have caught, and how many of each.
+- **Your Pokédex**: which of the original 151 Pokémon you have caught and how many of each, and for each catch: when it was caught, whether it was shiny, its level and other game details, plus the items in your bag.
 
 While a wild Pokémon is waiting to be caught, the Bot briefly remembers the channel ID it appeared in. This is held in memory only and is lost when the Bot restarts.
 
@@ -41,7 +41,7 @@ We do not sell or rent your data. We may share information only:
 - with Discord Inc. when reporting abuse or violations of its rules;
 - with the police, courts, or other authorities where the law requires it or where we are dealing with conduct that may be unlawful, such as an attack on the Bot; and
 - with our hosting provider, which stores the data on our behalf; and
-- for players who use in-game clan chat, in a file on GitHub that the Clan Dex RuneLite plugin reads: which Pokémon they caught and how many, listed under a scrambled code (a keyed hash) instead of their name. The code can only be matched to a name with a clan key that we share with clan members. Names and Discord user IDs are never published. To be left out, ask us to delete your data.
+- for players who use in-game clan chat, in a file on GitHub that the Clan Dex RuneLite plugin reads and that also serves as their backup: which Pokémon they caught and how many, listed under a scrambled code (a keyed hash) instead of their name. The same file has a list of these players' in-game names, encrypted with a clan key that we share with clan members, so members can see who is playing in the plugin; without the key the names cannot be read. Discord user IDs are never published. To be left out, ask us to delete your data, including from that file.
 
 Discord has its own [Privacy Policy](https://discord.com/privacy) that covers how Discord handles your information.
 

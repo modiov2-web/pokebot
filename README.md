@@ -11,7 +11,13 @@ A minimal, text-only Discord bot for catching the original 151 Pokémon.
 | `/pokemon` | `--pokemon` | A wild Pokémon appears in the channel |
 | `/pokeball` | `--pokeball` | Throw a Pokéball to try to catch it |
 | `/pokedex` | `--pokedex` | See how many you have caught, plus a few still to find |
-| `/caught` | `--caught` | Show up to 5 of the Pokémon you have caught |
+| `/caught` | `--caught` | Show up to 5 of the Pokémon you have caught (✨ marks a shiny) |
+| `/bag` | `--bag` | See the items in your bag, and how to use each |
+| `/greatball` etc. | `--greatball` | Throw a special ball from your bag (better catch chance; used up hit or miss) |
+| `/rarecandy` | `--rarecandy pikachu 2` | Level up your Pikachu #002 (the number can be left out if you only have one) |
+| `/rarecandy` | `--rarecandy pikachu` | Level up your highest-level Pikachu |
+
+Every wild Pokémon has a small chance (1% by default; set `SHINY_CHANCE` in `.env` to change it) of being **shiny** ✨, announced when it appears. Each catch is numbered per species (your first Pikachu is #001) and recorded with its level, real Gen 1 moves (Rare Candy can teach new ones), gender, the ball used and how many throws it took, and there's a small chance of finding an item for your bag. Which items exist, how often they're found and what they do is set in `items.json`. To change it, run `npm run items` and open http://127.0.0.1:8766, which edits and saves the file. Poké Balls are unlimited and never an item.
 
 ## Setup
 
@@ -21,13 +27,19 @@ A minimal, text-only Discord bot for catching the original 151 Pokémon.
 
 The `--` text commands need **Message Content Intent** switched on in the Developer Portal (Bot tab → Privileged Gateway Intents). Set `GAME_CHANNEL_ID` in `.env` to limit them to one channel. If OSRS chat is relayed into Discord by another bot, set `RELAY_BOT_ID` to that bot's user ID so messages like `Name: --pokemon` are accepted.
 
+When the bot starts from `main`, it checks GitHub for newer code and tells you if you need to `git pull` (then `npm ci` and `npm start`). An out-of-date copy also won't upload to the Clan Dex gist, so it can't write old-format data.
+
 Never commit `.env` or `pokedex.json`. They are listed in `.gitignore`.
 
 ### Optional: Clan Dex RuneLite plugin
 
 The Clan Dex plugin shows OSRS players their Pokédex in a RuneLite side panel. To feed it, the bot uploads the **in-game players'** catches to a GitHub gist about 15 seconds after each catch, and once at startup.
 
-Names are not published. Each player is listed under a hash of their name made with a clan key (`DEX_SECRET`), so without the key the file is just numbers. Discord-only players are never included.
+The gist is also the **backup for in-game players**. Every upload merges with what's already there and keeps the newest copy of each player, so the gist is never overwritten with older or empty data. If `pokedex.json` is ever lost (a rebuild, a new PC), each in-game player's catches come back from the gist the next time they play. Discord-only players aren't in the gist, so their catches live in `pokedex.json` alone; set `DATA_DIR` (below) to keep that file safe.
+
+Names are not published. Each in-game player is listed under a hash of their name made with a clan key (`DEX_SECRET`), so without the key the file is just numbers. Discord-only players are never included.
+
+**Tip:** set `DATA_DIR` in `.env` to a folder outside the bot's code folder (e.g. `C:\Users\you\Documents\pokebot-data`), so re-downloading the code can never delete `pokedex.json`. Move your existing `pokedex.json` into that folder first.
 
 1. Create a gist at [gist.github.com](https://gist.github.com) with one file named `dex.json` containing `{}`. Make it a **secret** gist.
 2. Create a fine-grained token at GitHub → Settings → Developer settings → Personal access tokens, with only **Account permissions → Gists: Read and write**.
